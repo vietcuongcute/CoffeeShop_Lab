@@ -1,24 +1,21 @@
-using System.Diagnostics;
+using coffeeshop.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using coffeeshop.Models;
 
-namespace coffeeshop.Controllers;
-
-public class HomeController : Controller
+namespace coffeeshop.Controllers
 {
-    public IActionResult Index()
+    public class HomeController : Controller
     {
-        return View();
-    }
+        private readonly IProductRepository productRepository;
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public HomeController(IProductRepository productRepository)
+        {
+            this.productRepository = productRepository;
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Index()
+        {
+            var products = productRepository.GetTrendingProducts();
+            return View(products);
+        }
     }
 }
