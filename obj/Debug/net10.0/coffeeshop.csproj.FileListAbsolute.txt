@@ -233,3 +233,4 @@
 /Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/vlocpwg511-{0}-738xhjnt2y-738xhjnt2y.gz
 /Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/ckjjpp9188-{0}-zrulw584vb-zrulw584vb.gz
 /Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/7vmyx9utw0-{0}-x7k8t7c4l4-x7k8t7c4l4.gz
+/Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/coffeeshop.sourcelink.json
