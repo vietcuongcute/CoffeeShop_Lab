@@ -18,6 +18,7 @@ builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>(sp =
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSession();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 var app = builder.Build();
 
