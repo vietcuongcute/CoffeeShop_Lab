@@ -1,0 +1,82 @@
+@model IEnumerable<coffeeshop.Models.Order>
+
+<section class="page-shell">
+    <div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+        <div class="glass-card">
+            <div class="page-title-row">
+                <div>
+                    <h1 class="page-title">List your orders</h1>
+                    <p class="page-subtitle">Track all your recent coffee orders.</p>
+                </div>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="empty-order-box">
+                    <h3>You have no orders yet</h3>
+                    <p>Start shopping and your orders will appear here.</p>
+
+                    <a asp-controller="Products" asp-action="Shop" class="btn btn-primary">
+                        Go to Shop
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table align-middle order-history-table">
+                        <thead>
+                            <tr>
+                                <th>Stt</th>
+                                <th>Time order</th>
+                                <th>Detail</th>
+                                <th>Shipping Address</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+                                var stt = 1;
+                            }
+
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@stt</td>
+                                    <td>@order.OrderPlaced.ToString("dd/MM/yyyy h:mm:ss tt")</td>
+
+                                    <td>
+                                        @if (order.OrderDetails != null)
+                                        {
+                                            foreach (var item in order.OrderDetails)
+                                            {
+                                                <div class="order-detail-item">
+                                                    <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name" />
+                                                    <div>
+                                                        @item.Quantity x @item.Product?.Name x @item.Price.ToString("0.00")
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </td>
+
+                                    <td>@order.Address</td>
+                                    <td>@order.OrderTotal.ToString("0.00")</td>
+                                    <td>
+                                        <span class="status-badge success-badge">
+                                            @(order.Status ?? "Success")
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                stt++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</section>

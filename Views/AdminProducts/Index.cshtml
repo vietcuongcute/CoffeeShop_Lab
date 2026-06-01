@@ -1,0 +1,92 @@
+@model IEnumerable<coffeeshop.Models.Product>
+@{
+    Layout = "_AdminLayout";
+}
+
+<section class="admin-shell">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-brand">ADMIN </div>
+
+            <div class="admin-section-label">Manage</div>
+            <nav class="admin-menu">
+                <a class="active" asp-controller="AdminProducts" asp-action="Index">Product</a>
+                <a asp-controller="AdminOrders" asp-action="Index">Order</a>
+                <a asp-controller="Home" asp-action="Index">Back to Website</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <div class="admin-card">
+                <div class="admin-title-row">
+                    <div>
+                        <h1>Manage Products</h1>
+                        <p>Add, edit and delete your product list</p>
+                    </div>
+
+                    <a asp-controller="AdminProducts" asp-action="Create" class="btn btn-primary">
+                        Add Product
+                    </a>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table admin-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Product</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Trending</th>
+                                <th>Detail</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var stt = 0;
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@stt</td>
+                                    <td>@item.Name</td>
+                                    <td>
+                                        <img src="@item.ImageUrl" alt="@item.Name" />
+                                    </td>
+                                    <td>@item.Price.ToString("0.00")</td>
+                                    <td>
+                                        @if (item.IsTrendingProduct)
+                                        {
+                                            <span class="badge bg-success">Yes</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">No</span>
+                                        }
+                                    </td>
+                                    <td>@item.Detail</td>
+                                    <td>
+                                        <a asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.Id">
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.Id"
+                                           class="text-danger">
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                stt++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>

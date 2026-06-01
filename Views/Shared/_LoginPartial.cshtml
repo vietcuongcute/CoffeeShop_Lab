@@ -1,0 +1,55 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link link text-black dropdown-toggle show display-4 d-flex align-items-center gap-2"
+           data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            <span>Hi @User.Identity?.Name</span>
+            <span class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-end user-menu" data-bs-popper="none">
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a class="dropdown-item" asp-controller="AdminProducts" asp-action="Index">
+                    Admin dashboard
+                </a>
+            }
+            else
+            {
+                <a class="dropdown-item" asp-controller="Orders" asp-action="UserOrders">
+                    Your orders
+                </a>
+            }
+
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="dropdown-item btn-logout-menu">
+                    Logout
+                </button>
+            </form>
+        </div>
+    </li>
+}
+else
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link link text-black dropdown-toggle show display-4" data-toggle="dropdown-submenu"
+           data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+            <span class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-end user-menu" data-bs-popper="none">
+            <a class="dropdown-item" asp-controller="Account" asp-action="Login">
+                Login
+            </a>
+
+            <a class="dropdown-item" asp-controller="Account" asp-action="Register">
+                Register
+            </a>
+        </div>
+    </li>
+}

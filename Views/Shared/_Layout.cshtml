@@ -3,6 +3,7 @@
 @{
     var cartCount = HttpContextAccessor?.HttpContext?.Session.GetInt32("CartCount") ?? 0;
 }
+
 <!DOCTYPE html>
 
 <html>
@@ -27,6 +28,7 @@
     <link rel="stylesheet" href="~/assets/dropdown/css/style.css">
     <link rel="stylesheet" href="~/assets/socicon/css/styles.css">
     <link rel="stylesheet" href="~/assets/theme/css/style.css">
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true">
 
     <link rel="preload"
           href="https://fonts.googleapis.com/css?family=Jost:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
@@ -82,34 +84,29 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link link text-black show display-4" asp-controller="Home"
-                               asp-action="Contact">
-                                Contact
-                            </a>
-                        </li>
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link link text-black show display-4" asp-controller="Home"
+                                   asp-action="Contact">
+                                    Contact
+                                </a>
+                            </li>
+                        }
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link link text-black dropdown-toggle show display-4"
-                               data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                               aria-expanded="false">
-                                <span class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>
-                            </a>
+                        <partial name="_LoginPartial" />
 
-                            <div class="dropdown-menu show" aria-labelledby="dropdown-751" data-bs-popper="none">
-                                <a class="text-black show dropdown-item display-4" href="#">Register</a>
-                                <a class="text-black show dropdown-item display-4" href="#">Login</a>
-                            </div>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link link text-black show display-4" asp-controller="ShoppingCart"
-                               asp-action="Index">
-                                <span class="mobi-mbri mobi-mbri-shopping-bag mbr-iconfont mbr-iconfont-btn">
-                                    <small>(@cartCount)</small>
-                                </span>
-                            </a>
-                        </li>
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link link text-black show display-4" asp-controller="ShoppingCart"
+                                   asp-action="Index">
+                                    <span class="mobi-mbri mobi-mbri-shopping-bag mbr-iconfont mbr-iconfont-btn">
+                                        <small>(@cartCount)</small>
+                                    </span>
+                                </a>
+                            </li>
+                        }
 
                     </ul>
                 </div>
@@ -137,6 +134,8 @@
     <script src="~/assets/ytplayer/index.js"></script>
     <script src="~/assets/dropdown/js/navbar-dropdown.js"></script>
     <script src="~/assets/theme/js/script.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 

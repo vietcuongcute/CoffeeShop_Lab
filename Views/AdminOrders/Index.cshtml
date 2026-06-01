@@ -1,0 +1,78 @@
+@model IEnumerable<coffeeshop.Models.Order>
+@{
+    Layout = "_AdminLayout";
+}
+
+<section class="admin-shell">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-brand">SB ADMIN 2</div>
+
+            <div class="admin-section-label">Manage</div>
+            <nav class="admin-menu">
+                <a asp-controller="AdminProducts" asp-action="Index">Product</a>
+                <a class="active" asp-controller="AdminOrders" asp-action="Index">Order</a>
+                <a asp-controller="Home" asp-action="Index">Back to Website</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <div class="admin-card">
+                <div class="admin-title-row">
+                    <div>
+                        <h1>Manage Orders</h1>
+                        <p>Review all orders placed by users</p>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table admin-table align-middle">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Time</th>
+                                <th>User</th>
+                                <th>Shipping</th>
+                                <th>Detail</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order.Id</td>
+                                    <td>@order.OrderPlaced.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>@order.UserEmail</td>
+                                    <td>@order.Address</td>
+                                    <td>
+                                        @if (order.OrderDetails != null)
+                                        {
+                                            foreach (var item in order.OrderDetails)
+                                            {
+                                                <div class="order-detail-item">
+                                                    <img src="@item.Product?.ImageUrl" alt="@item.Product?.Name" />
+                                                    <div>
+                                                        @item.Quantity x @item.Product?.Name
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </td>
+                                    <td>@order.OrderTotal.ToString("0.00")</td>
+                                    <td>
+                                        <span class="status-badge success-badge">
+                                            @(order.Status ?? "Success")
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>

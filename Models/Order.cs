@@ -18,6 +18,12 @@ namespace coffeeshop.Models
 
         public DateTime OrderPlaced { get; set; }
 
+        public string? UserId { get; set; }
+
+        public string? UserEmail { get; set; }
+
+        public string? Status { get; set; }
+
         public List<OrderDetail>? OrderDetails { get; set; }
     }
 }
