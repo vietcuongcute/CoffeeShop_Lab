@@ -14,6 +14,7 @@ namespace coffeeshop.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
 

@@ -1,0 +1,69 @@
+@model coffeeshop.Models.ContactMessage
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<section class="admin-shell">
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-brand">SB ADMIN 2</div>
+
+            <div class="admin-section-label">Manage</div>
+            <nav class="admin-menu">
+                <a asp-controller="AdminProducts" asp-action="Index">Product</a>
+                <a asp-controller="AdminOrders" asp-action="Index">Order</a>
+                <a class="active" asp-controller="AdminContacts" asp-action="Index">Contact</a>
+                <a asp-controller="Home" asp-action="Index">Back to Website</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <div class="admin-card">
+                <div class="admin-title-row">
+                    <div>
+                        <h1>Contact Detail</h1>
+                        <p>Message information from customer.</p>
+                    </div>
+
+                    <a asp-controller="AdminContacts" asp-action="Index" class="btn btn-secondary">
+                        Back
+                    </a>
+                </div>
+
+                <div class="contact-detail-box">
+                    <div class="mb-3">
+                        <strong>Name:</strong>
+                        <p>@Model.Name</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Email:</strong>
+                        <p>@Model.Email</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Time:</strong>
+                        <p>@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Message:</strong>
+                        <div class="contact-message-content">
+                            @Model.Message
+                        </div>
+                    </div>
+
+                    <form asp-controller="AdminContacts" asp-action="Delete" asp-route-id="@Model.Id" method="post"
+                          onsubmit="return confirm('Delete this contact message?');">
+                        @Html.AntiForgeryToken()
+
+                        <button type="submit" class="btn btn-danger">
+                            Delete Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>

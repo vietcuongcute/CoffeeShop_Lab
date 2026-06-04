@@ -300,4 +300,11 @@
 /Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/nezrqnk58p-{0}-muycvpuwrr-muycvpuwrr.gz
 /Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/v0zgfp0y55-{0}-87fc7y1x7t-87fc7y1x7t.gz
 /Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/yfc7ypekbg-{0}-mlv21k5csn-mlv21k5csn.gz
-/Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/g1gnndtw5d-{0}-jm63wfdeau-jm63wfdeau.gz
+/Users/vietcuong/Code/Dotnet/coffeeshop/bin/Debug/net10.0/publish/web.config
+/Users/vietcuong/Code/Dotnet/coffeeshop/bin/Debug/net10.0/publish/appsettings.Development.json
+/Users/vietcuong/Code/Dotnet/coffeeshop/bin/Debug/net10.0/publish/appsettings.json
+/Users/vietcuong/Code/Dotnet/coffeeshop/bin/Debug/net10.0/publish/coffeeshop.deps.json
+/Users/vietcuong/Code/Dotnet/coffeeshop/bin/Debug/net10.0/publish/coffeeshop.runtimeconfig.json
+/Users/vietcuong/Code/Dotnet/coffeeshop/bin/Debug/net10.0/publish/coffeeshop.staticwebassets.endpoints.json
+/Users/vietcuong/Code/Dotnet/coffeeshop/bin/Debug/net10.0/publish/wwwroot/assets/images/hashes.json
+/Users/vietcuong/Code/Dotnet/coffeeshop/obj/Debug/net10.0/compressed/g1gnndtw5d-{0}-njcaldzpcn-njcaldzpcn.gz
